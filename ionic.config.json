@@ -1,0 +1,7 @@
+{
+  "name": "ExamenIonicV3",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
