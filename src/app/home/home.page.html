@@ -7,61 +7,25 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div id="container">
-    <ion-list>
-      <ion-list-header>
-        Usuarios
-      </ion-list-header>
+  <ion-list>
+    <ion-list-header>
+      Usuarios
+    </ion-list-header>
 
-      <ion-item button detail="true" (click)="goToUser()">
+    <div class="users-container" *ngIf="!loading">
+      <ion-item button detail="true" [routerLink]="['/user', user.id]" *ngFor="let user of users">
         <ion-avatar slot="start">
           <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
         </ion-avatar>
         <ion-label>
-          <h3>Pokémon Yellow</h3>
-          <p>micorreo@hotmail.com</p>
+          <h3>{{user.name}}</h3>
+          <p>{{user.username}}</p>
         </ion-label>
       </ion-item>
+    </div>
+  </ion-list>
 
-      <ion-item button detail="true" (click)="goToUser()">
-        <ion-avatar slot="start">
-          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-        </ion-avatar>
-        <ion-label>
-          <h3>Mega Man X</h3>
-          <p>micorreo@hotmail.com</p>
-        </ion-label>
-      </ion-item>
-
-      <ion-item button detail="true" (click)="goToUser()">
-        <ion-avatar slot="start">
-          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-        </ion-avatar>
-        <ion-label>
-          <h3>The Legend of Zelda</h3>
-          <p>micorreo@hotmail.com</p>
-        </ion-label>
-      </ion-item>
-
-      <ion-item button detail="true" (click)="goToUser()">
-        <ion-avatar slot="start">
-          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-        </ion-avatar>
-        <ion-label>
-          <h3>Pac-Man</h3>
-          <p>micorreo@hotmail.com</p>
-        </ion-label>
-      </ion-item>
-
-      <ion-item button detail="true" (click)="goToUser()">
-        <ion-avatar slot="start">
-          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-        </ion-avatar>
-        <ion-label>
-          <h3>Super Mario World</h3>
-          <p>micorreo@hotmail.com</p>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-  </div>
+  <ion-label *ngIf="loading" class="center">
+    Cargando...
+  </ion-label>
 </ion-content>

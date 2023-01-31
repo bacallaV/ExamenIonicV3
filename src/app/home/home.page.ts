@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-home',
@@ -9,11 +11,25 @@ import { Router } from '@angular/router';
 export class HomePage {
 
   constructor(
-    private router: Router
+    private http: HttpClient,
   ) {}
 
-  goToUser() {
-    this.router.navigate( ['/user'] );
+  users: any = [];
+  loading: boolean = true;
+
+  ngOnInit() {
+    this.fetchUsers().subscribe( res => {
+      this.users = res;
+      this.loading = false;
+    });
+  }
+
+  fetchUsers() {
+    return this.http
+    .get("https://jsonplaceholder.typicode.com/users")
+    .pipe( map((res:any) => {
+      return res;
+    }));
   }
 
 }
